@@ -12,7 +12,14 @@ const url = 'https://api.darksky.net/forecast/5e5bf7da1a42dd3a689daf3f7a46161f/'
         } else if (body.error) {
             callback('Unable to find location', undefined)
         } else {
-            callback(undefined, body.daily.data[0].summary + ' It is currently ' + body.currently.temperature + ' degress out. There is a ' + body.currently.precipProbability + '% chance of rain')
+            //console.log('body.daily.data[0]:', body.daily.data[0])
+            //console.log('body.currently:', body.currently)
+            callback(undefined,
+                body.daily.data[0].summary + ' It is currently ' + body.currently.temperature +
+                ' degress out.' +
+                ' The low/high will be ' + body.daily.data[0].temperatureLow + '/' +
+                body.daily.data[0].temperatureHigh +
+                ' There is a ' + body.currently.precipProbability + '% chance of rain.')
         }
     })
 }
